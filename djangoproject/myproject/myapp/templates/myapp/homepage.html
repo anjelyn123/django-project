@@ -1,0 +1,89 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="homepage-container">
+    <h1>anjelyn</h1>
+    <p>
+        Take charge of your day with TaskMaster, the smart and simple Django To-Do List app. 
+        Stay organized, hit your goals, and never miss a deadline again.
+    </p>
+    
+    <div class="links">
+        <a class="btn" href="{% url 'todolist' %}">View My Tasks</a>
+        <a class="btn" href="{% url 'about' %}">Learn More</a>
+        <a class="btn" href="{% url 'contact' %}">Get in Touch</a>
+    </div>
+
+    <div class="documentation">
+        <h2>Getting Started is Easy:</h2>
+        <ol>
+            <li>Create your free account or log in.</li>
+            <li>Add tasks and set priorities or deadlines.</li>
+            <li>Track your progress with our visual tools.</li>
+            <li>Complete tasks and celebrate your productivity!</li>
+        </ol>
+    </div>
+
+    <div class="extra-features">
+        <h2>Why You'll Love TaskMaster:</h2>
+        <ul>
+            <li>Quick task creation and simple editing</li>
+            <li>Track progress with visual charts</li>
+            <li>Minimalistic, distraction-free design</li>
+            <li>Accessible on mobile, tablet, and desktop</li>
+            <li>Reminders to keep you on track</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.homepage-container {
+    max-width: 780px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.links {
+    margin: 30px 0;
+}
+
+.links .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 22px;
+    margin: 6px;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.links .btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.documentation, .extra-features {
+    text-align: left;
+    margin-top: 40px;
+}
+
+.documentation h2, .extra-features h2 {
+    color: #333;
+    margin-bottom: 14px;
+}
+
+.documentation ol li, .extra-features ul li {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+</style>
+{% endblock %}
