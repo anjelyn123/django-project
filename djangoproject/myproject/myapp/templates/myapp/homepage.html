@@ -1,89 +1,139 @@
-{% extends "myapp/base.html" %}
+{% extends "myapp/base.html" %}  
 
-{% block title %}Home{% endblock %}
+{% block title %}Home{% endblock %}  
 
 {% block content %}
-<div class="homepage-container">
-    <h1>anjelyn</h1>
-    <p>
-        Take charge of your day with TaskMaster, the smart and simple Django To-Do List app. 
-        Stay organized, hit your goals, and never miss a deadline again.
-    </p>
-    
-    <div class="links">
-        <a class="btn" href="{% url 'todolist' %}">View My Tasks</a>
-        <a class="btn" href="{% url 'about' %}">Learn More</a>
-        <a class="btn" href="{% url 'contact' %}">Get in Touch</a>
-    </div>
+<div class="posts-container">
+    <h1>Latest Posts from API</h1>
 
-    <div class="documentation">
-        <h2>Getting Started is Easy:</h2>
-        <ol>
-            <li>Create your free account or log in.</li>
-            <li>Add tasks and set priorities or deadlines.</li>
-            <li>Track your progress with our visual tools.</li>
-            <li>Complete tasks and celebrate your productivity!</li>
-        </ol>
-    </div>
-
-    <div class="extra-features">
-        <h2>Why You'll Love TaskMaster:</h2>
-        <ul>
-            <li>Quick task creation and simple editing</li>
-            <li>Track progress with visual charts</li>
-            <li>Minimalistic, distraction-free design</li>
-            <li>Accessible on mobile, tablet, and desktop</li>
-            <li>Reminders to keep you on track</li>
-        </ul>
-    </div>
+    {% for post in posts %}
+        <div class="post-card">
+            <div class="post-meta">
+                <div class="user-info">
+                    <span class="user-icon">👤</span>
+                    <span class="user-id">User {{ post.userId }}</span>
+                </div>
+                <div class="post-id">
+                    #{{ post.id }}
+                </div>
+            </div>
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-body">{{ post.body }}</p>
+            <div class="post-footer">
+                <span class="read-more">Read More →</span>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 
 <style>
-.homepage-container {
-    max-width: 780px;
+/* Container */
+.posts-container {
+    max-width: 850px;
     margin: 50px auto;
-    padding: 30px;
-    background: #f9f9f9;
-    border-radius: 16px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
-    text-align: center;
+    padding: 0 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.links {
-    margin: 30px 0;
+.posts-container h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #222;
 }
 
-.links .btn {
-    display: inline-block;
-    text-decoration: none;
-    padding: 14px 22px;
-    margin: 6px;
-    border-radius: 10px;
-    background-color: #007BFF;
-    color: #fff;
-    font-weight: 600;
-    transition: all 0.3s ease;
+/* Post Card */
+.post-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
-.links .btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: #ff9800;
 }
 
-.documentation, .extra-features {
-    text-align: left;
-    margin-top: 40px;
+/* Post Meta */
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #777;
 }
 
-.documentation h2, .extra-features h2 {
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.user-icon {
+    font-size: 1.1rem;
+}
+
+.post-id {
+    font-weight: bold;
+    color: #ff9800;
+}
+
+/* Post Title */
+.post-title {
+    font-size: 1.6rem;
     color: #333;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
-.documentation ol li, .extra-features ul li {
-    margin: 10px 0;
+/* Post Body */
+.post-body {
+    font-size: 1rem;
     line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+    white-space: pre-line;
+}
+
+/* Post Footer */
+.post-footer {
+    text-align: right;
+}
+
+.read-more {
+    font-size: 0.9rem;
+    color: #2196F3;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.read-more:hover {
+    color: #0b7dda;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .post-card {
+        padding: 20px;
+    }
+
+    .post-title {
+        font-size: 1.3rem;
+    }
+
+    .post-meta {
+        font-size: 0.8rem;
+    }
+
+    .read-more {
+        font-size: 0.8rem;
+    }
 }
 </style>
 {% endblock %}

@@ -1,7 +1,17 @@
 from django.shortcuts import render
+import requests   # <-- add this
 
 def homepage(request):
-    return render(request, "myapp/homepage.html")
+    url = "https://jsonplaceholder.typicode.com/posts"
+    response = requests.get(url)
+
+    posts = response.json()  # convert API response to JSON
+
+    context = {
+        "posts": posts
+    }
+
+    return render(request, "myapp/homepage.html", context)
 
 def todolist(request):
     return render(request, "myapp/todolist.html")
